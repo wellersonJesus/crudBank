@@ -11,4 +11,5 @@ export const AccountRoutes = Router()
 
 AccountRoutes.post('/',(req,res)=>AccountController.create(req,res))
 AccountRoutes.get('/',(req,res)=>AccountController.find(req,res))
-AccountRoutes.put('/:id',(req,res)=>AccountController.deposit(req,res))
+AccountRoutes.put('/deposit/:id',(req,res)=>AccountController.deposit(req,res))
+AccountRoutes.put('/withdraw/:id',(req,res)=>AccountController.withdraw(req,res))

@@ -26,9 +26,16 @@ export default class AccountService implements IAccountService{
     }
 
     async deposit(id: string, depositValue: number): Promise<object | Error> {
-        
+
         const accounts = await this.accountRepository.deposit(id,depositValue)
         return accounts
+    }
+
+    async withdraw(id: string, withdrawValue: number): Promise<object | Error> {
+
+        const accounts = await this.accountRepository.withdraw(id,withdrawValue)
+        return accounts
+
     }
 
 }

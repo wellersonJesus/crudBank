@@ -43,6 +43,18 @@ implements IAccountRepository
 
     }
 
+    async withdraw(id: string, withdrawValue: number): Promise<any | Error> {
+        
+        const account = await this.getRepo().findOne(id)
+
+        account.balance = Number(account.balance) - withdrawValue
+        
+        await this.getRepo().save(account)
+
+        return account
+
+    }
+
     
 
 }

@@ -36,4 +36,15 @@ export default class AccountController implements IAccountController{
 
     }
 
+    async withdraw(req: Request, res: Response): Promise<void> {
+        
+        const {id} = req.params
+        const {withdrawValue} = req.body
+
+        const account = await this.accountService.withdraw(id,withdrawValue)
+
+        res.json(account)
+
+    }
+
 }
