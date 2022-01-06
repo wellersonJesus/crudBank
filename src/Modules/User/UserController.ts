@@ -13,6 +13,18 @@ export default class UserController implements IUserController{
             
             const {name,CPF,email}=req.body
 
+            //Validação de Input
+            if(!name){
+                res.status(422).json({message:"Field name is required!"})
+            }
+            if(!CPF){
+                res.status(422).json({message:"Field CPF is required!"})
+            }
+            if(!email){
+                res.status(422).json({message:"Field email is required!"})
+            }
+
+
             const user = await this.userService.create({
                 name,
                 CPF,
@@ -34,12 +46,24 @@ export default class UserController implements IUserController{
 
         async findById(req: Request, res: Response): Promise<void> {
             const {id} = req.params
+
+            //Validação de Params
+            if(!id){
+                res.status(422).json({message:"Id is required!"})
+            }
+
             const user = await this.userService.findById(id)
             res.json(user)
         }
 
         async delete(req: Request, res: Response): Promise<void> {
             const {id} = req.params
+
+            //Validação de Params
+            if(!id){
+                res.status(422).json({message:"Id is required!"})
+            }
+
             const result = await this.userService.delete(id)
             res.status(204).json(result)
         }
@@ -48,6 +72,22 @@ export default class UserController implements IUserController{
             
             const {id} = req.params
             const {name, CPF, email} = req.body
+
+            //Validação de Params
+            if(!id){
+                res.status(422).json({message:"Id is required!"})
+            }
+
+            //Validação de Input
+            if(!name){
+                res.status(422).json({message:"Field name is required!"})
+            }
+            if(!CPF){
+                res.status(422).json({message:"Field CPF is required!"})
+            }
+            if(!email){
+                res.status(422).json({message:"Field email is required!"})
+            }
 
             const user = await this.userService.update(id,name,CPF,email)
 
