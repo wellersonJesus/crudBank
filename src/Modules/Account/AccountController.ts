@@ -43,6 +43,7 @@ export default class AccountController implements IAccountController{
         res.status(200).json(accounts)
     }
 
+    //Método findById para buscar conta especifica
     async findById(req: Request, res: Response): Promise<void> {
         const {id} = req.params
         const account = await this.accountService.findById(id)

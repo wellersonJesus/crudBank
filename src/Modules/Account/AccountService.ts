@@ -33,7 +33,8 @@ export default class AccountService implements IAccountService{
         const accounts = this.accountRepository.find()
         return accounts
     }
-
+    
+    //Método findById para buscar conta especifica
     async findById(id: string): Promise<Account | Error> {
         const account = await this.accountRepository.findById(id)
         return account
