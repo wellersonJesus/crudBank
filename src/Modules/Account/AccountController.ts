@@ -15,6 +15,17 @@ export default class AccountController implements IAccountController{
     async create(req: Request, res: Response): Promise<void> {
         const {typeAccount,balance,id_idUser} = req.body
 
+        //Validation inputs
+        if(!typeAccount){
+            res.status(422).json({message:"TypeAccount is required!"})
+        }
+        if(!balance){
+            res.status(422).json({message:"Balance is required!"})
+        }
+        if(!id_idUser){
+            res.status(422).json({message:"Id_idUser is required!"})
+        }
+
         const account = await this.accountService.create({
             typeAccount,
             balance,
@@ -36,6 +47,16 @@ export default class AccountController implements IAccountController{
         const {id} = req.params
         const{depositValue} = req.body
 
+        //Validation Params
+        if(!id){
+            res.status(422).json({message:"Id is required!"})
+        }
+
+        //Validation Input
+        if(!depositValue){
+            res.status(422).json({message:"DepositValue is required!"})
+        }
+
         const account = await this.accountService.deposit(id,depositValue)
 
         res.json(account)
@@ -47,6 +68,16 @@ export default class AccountController implements IAccountController{
         
         const {id} = req.params
         const {withdrawValue} = req.body
+        
+        //Validation Params
+        if(!id){
+            res.status(422).json({message:"Id is required!"})
+        }
+
+        //Validation Input
+        if(!withdrawValue){
+            res.status(422).json({message:"WithdrawValue is required!"})
+        }
 
         const account = await this.accountService.withdraw(id,withdrawValue)
 
