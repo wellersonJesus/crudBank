@@ -53,6 +53,11 @@ export default class UserController implements IUserController{
             }
 
             const user = await this.userService.findById(id)
+
+            if(user instanceof Error){
+                res.json(user.message)
+            }
+
             res.json(user)
         }
 
@@ -65,6 +70,11 @@ export default class UserController implements IUserController{
             }
 
             const result = await this.userService.delete(id)
+
+            if(result instanceof Error){
+                res.json(result.message)
+            }
+
             res.status(204).json(result)
         }
 
@@ -90,6 +100,10 @@ export default class UserController implements IUserController{
             }
 
             const user = await this.userService.update(id,name,CPF,email)
+
+            if(user instanceof Error){
+                res.json(user.message)
+            }
 
             res.json(user)
 
