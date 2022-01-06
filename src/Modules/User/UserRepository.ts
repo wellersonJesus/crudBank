@@ -34,7 +34,16 @@ implements IUserRepository
     }
 
     async findById(id: string): Promise<User | Error> {
-        const user = await this.getRepo().findOne({id})
+
+        let user
+
+        if(id.length < 12){
+            const CPF = id
+            user = await this.getRepo().findOne({CPF})
+        }else{
+            user = await this.getRepo().findOne({id})
+        }
+
         return user
     }
 

@@ -9,6 +9,10 @@ export default class userService implements IUserService{
     ){}
 
     async create({ id, name, CPF, email }: IUser): Promise<object | Error> {
+
+        if(await this.userRepository.findById(CPF)){
+            return new Error ("User already exist!")
+        }
         
         const user = await this.userRepository.create({
             name,
