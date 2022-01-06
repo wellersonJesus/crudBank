@@ -34,6 +34,17 @@ implements IAccountRepository
         return accounts
     }
 
+    //Método findById para buscar conta especifica
+    async findById(id: string): Promise<Account | Error> {
+        
+        const id_idUser = id
+
+        const account = await this.getRepo().findOne({id_idUser})
+        return account
+
+    }
+
+    
     //Métodio deposit para depositar algum valor no saldo da conta
     async deposit(id: string, depositValue: number): Promise<any | Error> {
         

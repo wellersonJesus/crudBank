@@ -1,3 +1,4 @@
+import { Account } from "../../entities/Account";
 import { IAccount, IAccountRepository, IAccountService } from "./structure";
 
 
@@ -11,6 +12,11 @@ export default class AccountService implements IAccountService{
 
     //Método create para criar uma nova conta
     async create({ id, typeAccount, balance, id_idUser }: IAccount): Promise<object | Error> {
+
+        //Verficiar se user já possui conta cadastrada
+        if(await this.accountRepository.findById(id_idUser)){
+            return new Error ("User already has an account!")
+        }
         
         const account = await this.accountRepository.create({
             typeAccount,
@@ -26,6 +32,11 @@ export default class AccountService implements IAccountService{
     async find(): Promise<object | Error> {
         const accounts = this.accountRepository.find()
         return accounts
+    }
+
+    async findById(id: string): Promise<Account | Error> {
+        const account = await this.accountRepository.findById(id)
+        return account
     }
 
     //Métodio deposit para depositar algum valor no saldo da conta

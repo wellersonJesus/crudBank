@@ -19,9 +19,7 @@ export default class AccountController implements IAccountController{
         if(!typeAccount){
             res.status(422).json({message:"TypeAccount is required!"})
         }
-        if(!balance){
-            res.status(422).json({message:"Balance is required!"})
-        }
+       
         if(!id_idUser){
             res.status(422).json({message:"Id_idUser is required!"})
         }
@@ -32,6 +30,10 @@ export default class AccountController implements IAccountController{
             id_idUser
         })
 
+        if(account instanceof Error){
+            res.json(account.message)
+        }
+
         res.status(201).json(account)
     }
 
@@ -39,6 +41,12 @@ export default class AccountController implements IAccountController{
     async find(req: Request, res: Response): Promise<void> {
         const accounts = await this.accountService.find()
         res.status(200).json(accounts)
+    }
+
+    async findById(req: Request, res: Response): Promise<void> {
+        const {id} = req.params
+        const account = await this.accountService.findById(id)
+        res.json(account)
     }
 
     //Métodio deposit para depositar algum valor no saldo da conta
