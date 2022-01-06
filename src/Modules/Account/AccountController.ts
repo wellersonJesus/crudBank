@@ -4,10 +4,14 @@ import { ParsedQs } from "qs";
 import { IAccountController, IAccountService } from "./structure";
 
 
+//Class AccountController - RESPONSÁVEL POR PEGAR OS DADOS DO INPUt
+
+
 export default class AccountController implements IAccountController{
 
     constructor(private accountService:IAccountService){}
 
+    //Método create para criar uma nova conta
     async create(req: Request, res: Response): Promise<void> {
         const {typeAccount,balance,id_idUser} = req.body
 
@@ -20,11 +24,13 @@ export default class AccountController implements IAccountController{
         res.status(201).json(account)
     }
 
+    //Método find para buscar todas as contas existentes
     async find(req: Request, res: Response): Promise<void> {
         const accounts = await this.accountService.find()
         res.status(200).json(accounts)
     }
 
+    //Métodio deposit para depositar algum valor no saldo da conta
     async deposit(req: Request, res: Response): Promise<void> {
         
         const {id} = req.params
@@ -36,6 +42,7 @@ export default class AccountController implements IAccountController{
 
     }
 
+    //Método withdraw para sacar algum valor do saldo atual
     async withdraw(req: Request, res: Response): Promise<void> {
         
         const {id} = req.params

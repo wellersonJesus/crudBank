@@ -4,6 +4,7 @@ import BaseRepository from "../../utils/BaseRepository";
 import { IUser } from "../User/structure";
 import { IAccount, IAccountRepository } from "./structure";
 
+//Class AccountRepository - RESPONSÁVEL PELA RELAÇÃO COM O BANCO DE DADOS
 
 export default class AccountRepository
 extends BaseRepository<Account>
@@ -14,6 +15,7 @@ implements IAccountRepository
         return super._getRepo(Account)
     }
 
+    //Método create para criar uma nova conta
     async create({typeAccount,balance,id_idUser}:IAccount):Promise<Account|Error>{
         const account = this.getRepo().create({
             typeAccount,
@@ -24,6 +26,7 @@ implements IAccountRepository
         return account
     }
     
+    //Método find para buscar todas as contas existentes
     async find(): Promise<object | Error> {
         const accounts = this.getRepo().find({
             relations:["user"]
@@ -31,6 +34,7 @@ implements IAccountRepository
         return accounts
     }
 
+    //Métodio deposit para depositar algum valor no saldo da conta
     async deposit(id: string, depositValue: number): Promise<any | Error> {
         
         const account = await this.getRepo().findOne(id)
@@ -43,6 +47,7 @@ implements IAccountRepository
 
     }
 
+    //Método withdraw para sacar algum valor do saldo atual
     async withdraw(id: string, withdrawValue: number): Promise<any | Error> {
         
         const account = await this.getRepo().findOne(id)
