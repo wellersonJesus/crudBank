@@ -43,6 +43,14 @@ export default class AccountService implements IAccountService{
     //Métodio deposit para depositar algum valor no saldo da conta
     async deposit(id: string, depositValue: number): Promise<object | Error> {
 
+        const account = await this.accountRepository.findById(id)
+
+        const result = Number(account) + depositValue
+
+        if(result > 5000){
+            return new Error("Limit unavailable!")
+        }
+
         const accounts = await this.accountRepository.deposit(id,depositValue)
         return accounts
     }

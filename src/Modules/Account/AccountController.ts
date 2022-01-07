@@ -67,6 +67,10 @@ export default class AccountController implements IAccountController{
 
         const account = await this.accountService.deposit(id,depositValue)
 
+        if(account instanceof Error){
+            res.json(account.message)
+        }
+
         res.json(account)
 
     }
