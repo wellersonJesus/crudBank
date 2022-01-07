@@ -26,23 +26,27 @@ export default class UserController implements IUserController{
 
         }
 
+        //Método find para buscar todos usuarios
         async find(req:Request, res:Response):Promise<void>{
             const users = await this.userService.find()
             res.json(users)
         }
 
+        //Método find para buscar especifica
         async findById(req: Request, res: Response): Promise<void> {
             const {id} = req.params
             const user = await this.userService.findById(id)
             res.json(user)
         }
 
+        //Método delete por id
         async delete(req: Request, res: Response): Promise<void> {
             const {id} = req.params
             const result = await this.userService.delete(id)
             res.status(204).json(result)
         }
 
+        //Método Update atualiza
         async update(req: Request, res: Response): Promise<void> {
             
             const {id} = req.params

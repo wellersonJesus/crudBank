@@ -1,15 +1,15 @@
 import User from "../../entities/User";
+import Account from "../../entities/Account";
 import { IUser, IUserRepository, IUserService } from "./structure";
 
-
-export default class userService implements IUserService{
+export default class userService implements IUserService {
 
     constructor(
-        private userRepository:IUserRepository
-    ){}
+        private userRepository: IUserRepository
+    ) { }
 
     async create({ id, name, CPF, email, }: IUser): Promise<object | Error> {
-        
+
         const user = await this.userRepository.create({
             name,
             CPF,
@@ -21,7 +21,7 @@ export default class userService implements IUserService{
     }
 
     async find(): Promise<object | Error> {
-        
+
         const user = await this.userRepository.find()
 
         return user
@@ -37,12 +37,11 @@ export default class userService implements IUserService{
         await this.userRepository.delete(id)
     }
 
-    async update(id: string, name?: string, CPF?: string, email?: string, ): Promise<object | Error> {
-        
-        const user = await this.userRepository.update(id,name,CPF,email)
+    async update(id: string, name?: string, CPF?: string, email?: string,): Promise<object | Error> {
+
+        const user = await this.userRepository.update(id, name, CPF, email)
 
         return user
 
     }
-
 }

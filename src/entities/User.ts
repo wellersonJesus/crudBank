@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import  Account from "./Account"
-
 @Entity("users")
 export default class User{
 
@@ -20,7 +19,7 @@ export default class User{
     @OneToOne(()=>Account, user => User )
     @JoinColumn({name:"id_idAccount"})
     account: Account
-    
+
     @CreateDateColumn()
     created_at:Date
 

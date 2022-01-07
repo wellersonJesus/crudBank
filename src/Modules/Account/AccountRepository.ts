@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import Account from "../../entities/Account";
 import BaseRepository from "../../utils/BaseRepository";
 import { IUser } from "../User/structure";
-import { IAccount, IAccountRepository } from "./structure";
+import { IAccount, IAccountRepository, IBalanceResponse } from "./structure";
 
 //Class AccountRepository - RESPONSÁVEL PELA RELAÇÃO COM O BANCO DE DADOS
 
@@ -60,7 +60,20 @@ implements IAccountRepository
 
     }
 
-    
+    //Método Extrato User
+    async balance(id: string): Promise<IBalanceResponse | Error> {
+        const account = await this.getRepo().findOne({
+            where : {
+                id
+            },
+            relations:["user"]
+        })
+        return {
+            name: account.user.name,
+            cpf: account.user.CPF,
+            balance: account.balance
+        };
+    }
 
 }
 

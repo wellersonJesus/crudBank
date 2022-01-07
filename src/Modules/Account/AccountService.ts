@@ -1,6 +1,6 @@
 import  Account  from "../../entities/Account";
-import { IAccount, IAccountRepository, IAccountService } from "./structure";
-
+import User from "../../entities/User";
+import { IAccount, IAccountRepository, IAccountService, IBalanceResponse } from "./structure";
 //Class AccountService - RESPONSÁVEL POR REGRAS DE NEGÓCIO
 
 export default class AccountService implements IAccountService{
@@ -28,7 +28,7 @@ export default class AccountService implements IAccountService{
         return accounts
     }
 
-    //Métodio deposit para depositar algum valor no saldo da conta
+    //Método deposito para depositar algum valor no saldo da conta
     async deposit(id: string, depositValue: number): Promise<object | Error> {
 
         const accounts = await this.accountRepository.deposit(id,depositValue)
@@ -43,4 +43,9 @@ export default class AccountService implements IAccountService{
 
     }
 
-}
+    //Metodo Extrato User
+    async balance(id: string): Promise<IBalanceResponse | Error> {
+        const balance = await this.accountRepository.balance(id)
+        return balance;
+    }
+    }
