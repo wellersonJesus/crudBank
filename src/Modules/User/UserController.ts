@@ -4,7 +4,6 @@ import { ParsedQs } from "qs";
 import { IUserController, IUserService } from "./structure"
 
 
-
 export default class UserController implements IUserController{
 
         constructor (private userService:IUserService){}

@@ -1,10 +1,7 @@
 import { Repository } from "typeorm";
-import { User } from "../../entities/User";
+import User from "../../entities/User";
 import BaseRepository from "../../utils/BaseRepository";
 import { IUser, IUserRepository } from "./structure";
-
-
-
 
 export default class UserRepository
 extends BaseRepository<User>
@@ -14,12 +11,13 @@ implements IUserRepository
         return super._getRepo(User)
     }
 
-    async create({name,CPF,email}:IUser):Promise<User|Error>{
+    async create({ name, CPF, email}:IUser):Promise<User|Error>{
 
         const user = this.getRepo().create({
             name,
             CPF,
             email
+
         })
 
         await this.getRepo().save(user)
@@ -33,21 +31,22 @@ implements IUserRepository
         return users
     }
 
-    async findById(id: string): Promise<User | Error> {
+    async findById(id: string): Promise<any | Error> {
         const user = await this.getRepo().findOne({id})
-        return user
+        return user.email
     }
 
     async delete(id: string): Promise<void | Error> {
         await this.getRepo().delete(id)
     }
 
-    async update(id: string, name?: string, CPF?: string, email?: string) {
+    async update(id: string, name?: string, CPF?: string, email?: string, ) {
         
         const user = await this.getRepo().update(id,{
             name,
             CPF,
             email
+
         })
 
         return user

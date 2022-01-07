@@ -1,5 +1,5 @@
+import  Account  from "../../entities/Account";
 import { IAccount, IAccountRepository, IAccountService } from "./structure";
-
 
 //Class AccountService - RESPONSÁVEL POR REGRAS DE NEGÓCIO
 
@@ -10,7 +10,7 @@ export default class AccountService implements IAccountService{
     ){}
 
     //Método create para criar uma nova conta
-    async create({ id, typeAccount, balance, id_idUser }: IAccount): Promise<object | Error> {
+    async create({ id, typeAccount, balance, id_idUser}: IAccount): Promise<object | Error> {
         
         const account = await this.accountRepository.create({
             typeAccount,

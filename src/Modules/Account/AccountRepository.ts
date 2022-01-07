@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { Account } from "../../entities/Account";
+import Account from "../../entities/Account";
 import BaseRepository from "../../utils/BaseRepository";
 import { IUser } from "../User/structure";
 import { IAccount, IAccountRepository } from "./structure";
@@ -16,7 +16,7 @@ implements IAccountRepository
     }
 
     //Método create para criar uma nova conta
-    async create({typeAccount,balance,id_idUser}:IAccount):Promise<Account|Error>{
+    async create({typeAccount,balance, id_idUser}:IAccount):Promise<Account|Error>{
         const account = this.getRepo().create({
             typeAccount,
             balance,

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../../entities/User";
-
+import  User  from "../../entities/User";
 
 
 export interface IUser{

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Account } from "../../entities/Account";
+import  Account  from "../../entities/Account";
 
 
 
@@ -7,7 +7,7 @@ export interface IAccount{
     id?:string,
     typeAccount:string,
     balance:number,
-    id_idUser:string
+    id_idUser
 }
 
 

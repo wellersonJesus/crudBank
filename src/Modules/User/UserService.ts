@@ -1,4 +1,4 @@
-import { User } from "../../entities/User";
+import User from "../../entities/User";
 import { IUser, IUserRepository, IUserService } from "./structure";
 
 
@@ -8,7 +8,7 @@ export default class userService implements IUserService{
         private userRepository:IUserRepository
     ){}
 
-    async create({ id, name, CPF, email }: IUser): Promise<object | Error> {
+    async create({ id, name, CPF, email, }: IUser): Promise<object | Error> {
         
         const user = await this.userRepository.create({
             name,
@@ -37,7 +37,7 @@ export default class userService implements IUserService{
         await this.userRepository.delete(id)
     }
 
-    async update(id: string, name?: string, CPF?: string, email?: string): Promise<object | Error> {
+    async update(id: string, name?: string, CPF?: string, email?: string, ): Promise<object | Error> {
         
         const user = await this.userRepository.update(id,name,CPF,email)
 
