@@ -33,7 +33,7 @@ export default class AccountService implements IAccountService{
         const accounts = this.accountRepository.find()
         return accounts
     }
-    
+
     //Método findById para buscar conta especifica
     async findById(id: string): Promise<Account | Error> {
         const account = await this.accountRepository.findById(id)
@@ -48,10 +48,19 @@ export default class AccountService implements IAccountService{
     }
 
     //Método withdraw para sacar algum valor do saldo atual
-    async withdraw(id: string, withdrawValue: number): Promise<object | Error> {
+    async withdraw(id: string, withdrawValue: number): Promise< any | Error> {
+
+        const account = await this.accountRepository.findById(id)
+
+        const result = Number(account) - withdrawValue
+
+        if(result < 0){
+            return new Error("Insufficient funds!")
+        }
 
         const accounts = await this.accountRepository.withdraw(id,withdrawValue)
-        return accounts
+
+        return (accounts)
 
     }
 

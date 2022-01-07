@@ -35,12 +35,17 @@ implements IAccountRepository
     }
 
     //Método findById para buscar conta especifica
-    async findById(id: string): Promise<Account | Error> {
+    async findById(id?: string,id_idUser?:string): Promise<Account | Error> {
         
-        const id_idUser = id
+        let account
 
-        const account = await this.getRepo().findOne({id_idUser})
-        return account
+        if(id){
+            account = await this.getRepo().findOne({id})
+            return account.balance
+        }else{
+            account = await this.getRepo().findOne({id_idUser})
+            return account
+        }
 
     }
 
@@ -71,6 +76,7 @@ implements IAccountRepository
 
     }
 
+    
     
 
 }

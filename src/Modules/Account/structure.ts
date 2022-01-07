@@ -16,7 +16,7 @@ export interface IAccountRepository{
     find():Promise<object|Error>
     findById(id:string):Promise<Account|Error>
     deposit(id:string,depositValue:number):Promise<object|Error>
-    withdraw(id:string,withdrawValue:number):Promise<object|Error>
+    withdraw(id:string,withdrawValue:number):Promise<any|Error>
 }
 
 export interface IAccountService{
@@ -24,7 +24,7 @@ export interface IAccountService{
     find():Promise<object|Error>
     findById(id:string):Promise<Account|Error>
     deposit(id:string,depositValue:number):Promise<object|Error>
-    withdraw(id:string,withdrawValue:number):Promise<object|Error>
+    withdraw(id:string,withdrawValue:number):Promise<any|Error>
 }
 
 export interface IAccountController{

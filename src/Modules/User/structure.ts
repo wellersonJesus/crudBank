@@ -13,7 +13,7 @@ export interface IUser{
 export interface IUserRepository{
     create(data:IUser):Promise<User|Error>
     find():Promise<object|Error>
-    findById(id:string):Promise<User|Error>
+    findById(id:string,idSearch?:string):Promise<User|Error>
     delete(id:string):Promise<void|Error>
     update(id:string,name?:string,CPF?:string,email?:string):Promise<object|Error>
 }

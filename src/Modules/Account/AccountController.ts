@@ -19,7 +19,6 @@ export default class AccountController implements IAccountController{
         if(!typeAccount){
             res.status(422).json({message:"TypeAccount is required!"})
         }
-       
         if(!id_idUser){
             res.status(422).json({message:"Id_idUser is required!"})
         }
@@ -89,6 +88,10 @@ export default class AccountController implements IAccountController{
         }
 
         const account = await this.accountService.withdraw(id,withdrawValue)
+
+        if(account instanceof Error){
+            res.json(account.message)
+        }
 
         res.json(account)
 
