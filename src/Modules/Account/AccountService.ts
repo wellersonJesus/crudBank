@@ -12,11 +12,6 @@ export default class AccountService implements IAccountService{
 
     //Método create para criar uma nova conta
     async create({ id, typeAccount, balance, id_idUser }: IAccount): Promise<object | Error> {
-
-        //Verficiar se user já possui conta cadastrada
-        if(await this.accountRepository.findById(id_idUser)){
-            return new Error ("User already has an account!")
-        }
         
         const account = await this.accountRepository.create({
             typeAccount,

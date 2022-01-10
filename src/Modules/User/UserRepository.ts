@@ -37,7 +37,7 @@ implements IUserRepository
 
         let user
 
-        if(id.length < 12){
+        if(id.length < 18){
             const CPF = id
             user = await this.getRepo().findOne({CPF})
         }else{
