@@ -1,6 +1,7 @@
 import User from "../../entities/User";
 import Account from "../../entities/Account";
 import { IUser, IUserRepository, IUserService } from "./structure";
+import { ReplSet } from "typeorm";
 
 export default class userService implements IUserService {
 
@@ -34,7 +35,8 @@ export default class userService implements IUserService {
     }
 
     async delete(id: string): Promise<void | Error> {
-        await this.userRepository.delete(id)
+        const result = await this.userRepository.delete(id)
+        return result        
     }
 
     async update(id: string, name?: string, CPF?: string, email?: string,): Promise<object | Error> {

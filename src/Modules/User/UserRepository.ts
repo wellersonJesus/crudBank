@@ -36,8 +36,21 @@ implements IUserRepository
         return user.email
     }
 
+    //let: Variavel muda de valor dentro do mesmo metodo
+    //const: Variavel constante NÃO muda de valor
+    //var: Variavel muda de valor
+        
     async delete(id: string): Promise<void | Error> {
-        await this.getRepo().delete(id)
+        const result = await this.getRepo().delete(id)
+        let resp
+        
+        if (result){
+            resp = "User deleted success!!"
+            return resp 
+        }else{
+            resp = "User not deleted"
+            return resp
+        }
     }
 
     async update(id: string, name?: string, CPF?: string, email?: string, ) {
