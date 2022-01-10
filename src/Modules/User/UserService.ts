@@ -9,41 +9,61 @@ export default class userService implements IUserService {
         private userRepository: IUserRepository
     ) { }
 
+
+    // getServ():Service<User>{
+    //     return super._getService(User)
+    // }    
+
     async create({ id, name, CPF, email, }: IUser): Promise<object | Error> {
 
-        const user = await this.userRepository.create({
-            name,
-            CPF,
-            email
-        })
+    //REGRA DE NEGOCIO USUARIO JÁ CADASTRADO
+    // const result = await this.getServ().create(CPF)
+    //     let resp
+
+    //     if (result) {
+    //         resp = "User deleted success!!"
+    //         return resp
+    //     } else {
+    //         resp = "User not deleted"
+    //         return resp
+    //     }
+    // }
+
+
+
+    const user = await this.userRepository.create({
+        name,
+        CPF,
+        email
+    })
 
         return user
 
     }
 
-    async find(): Promise<object | Error> {
+    async find(): Promise < object | Error > {
 
-        const user = await this.userRepository.find()
-
-        return user
-
-    }
-
-    async findById(id: string): Promise<User | Error> {
-        const user = await this.userRepository.findById(id)
-        return user
-    }
-
-    async delete(id: string): Promise<void | Error> {
-        const result = await this.userRepository.delete(id)
-        return result        
-    }
-
-    async update(id: string, name?: string, CPF?: string, email?: string,): Promise<object | Error> {
-
-        const user = await this.userRepository.update(id, name, CPF, email)
+    const user = await this.userRepository.find()
 
         return user
 
-    }
+}
+
+    async findById(id: string): Promise < User | Error > {
+    const user = await this.userRepository.findById(id)
+        return user
+}
+
+    async delete (id: string): Promise < void | Error > {
+    const result = await this.userRepository.delete(id)
+        return result
+}
+
+    async update(id: string, name ?: string, CPF ?: string, email ?: string,): Promise < object | Error > {
+
+    const user = await this.userRepository.update(id, name, CPF, email)
+
+        return user
+
+}
 }
