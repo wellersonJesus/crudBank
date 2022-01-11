@@ -37,4 +37,4 @@ export interface IAccountController{
     deposit(req:Request,res:Response):Promise<void>
     withdraw(req:Request,res:Response):Promise<void>
     balance(req:Request,res:Response):Promise<void>
-}ba5f1f0b-f871-44e6-b483-0149bd038f1a
+}
