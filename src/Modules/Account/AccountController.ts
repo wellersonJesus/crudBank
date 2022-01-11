@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
+import { json, Request, Response } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
+import Account from "../../entities/Account";
 import { IAccountController, IAccountService } from "./structure";
 
 
@@ -52,6 +53,14 @@ export default class AccountController implements IAccountController{
 
         res.json(account)
 
+    }
+
+    //Método find extrato usuario 
+    async balance(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        
+        const balanceService = await this.accountService.balance(id)
+        res.json(balanceService)
     }
 
 }
