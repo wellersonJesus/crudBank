@@ -18,7 +18,7 @@ import { ReplSet } from "typeorm";
      if (validauser) {
          resp = "User already exist!!"
             return resp
-     }
+     }else (!validauser)
              
     const user = await this.userRepository.create({
         name,
