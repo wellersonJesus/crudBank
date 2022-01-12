@@ -2,35 +2,24 @@ import User from "../../entities/User";
 import Account from "../../entities/Account";
 import { IUser, IUserRepository, IUserService } from "./structure";
 import { ReplSet } from "typeorm";
-
-export default class userService implements IUserService {
+   
+   export default class userService implements IUserService {
 
     constructor(
         private userRepository: IUserRepository
-    ) { }
-
-
-    // getServ():Service<User>{
-    //     return super._getService(User)
-    // }    
+    ) {}    
 
     async create({ id, name, CPF, email, }: IUser): Promise<object | Error> {
-
+  
     //REGRA DE NEGOCIO USUARIO JÁ CADASTRADO
-    // const result = await this.getServ().create(CPF)
-    //     let resp
+    const validauser = await this.userRepository.findCPF(CPF)
+     let resp
 
-    //     if (result) {
-    //         resp = "User deleted success!!"
-    //         return resp
-    //     } else {
-    //         resp = "User not deleted"
-    //         return resp
-    //     }
-    // }
-
-
-
+     if (validauser) {
+         resp = "User already exist!!"
+            return resp
+     }
+             
     const user = await this.userRepository.create({
         name,
         CPF,

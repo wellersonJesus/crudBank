@@ -36,6 +36,11 @@ implements IUserRepository
         return user.email
     }
 
+    async findCPF(CPF: string): Promise<any | Error> {
+        const user = await this.getRepo().findOne({CPF})
+        return user
+    }
+            
     //let: Variavel muda de valor dentro do mesmo metodo
     //const: Variavel constante NÃO muda de valor
     //var: Variavel muda de valor
