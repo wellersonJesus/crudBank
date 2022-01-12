@@ -3,11 +3,9 @@ import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
 import Account from "../../entities/Account";
 import { IAccountController, IAccountService } from "./structure";
-
+import AccountService from "./AccountService";
 
 //Class AccountController - RESPONSÁVEL POR PEGAR OS DADOS DO INPUt
-
-
 export default class AccountController implements IAccountController{
 
     constructor(private accountService:IAccountService){}
@@ -20,7 +18,23 @@ export default class AccountController implements IAccountController{
             typeAccount,
             balance,
             id_idUser
+
         })
+    //Definie o tipo da conta Pesso fisica ou Pessoa juridica
+        let x = "Pessoa Fisica"
+        let y = "Pessoa Juridica"
+    
+    function tipoConta(){      
+            
+            if (tipoConta) {
+                    typeAccount == 0
+                    return "Pessoa Fisica"                
+            
+                } else {
+                typeAccount == 1
+                return "Pessoa Juridica"                
+            }
+        }        
 
         res.status(201).json(account)
     }
@@ -57,10 +71,17 @@ export default class AccountController implements IAccountController{
 
     //Método find extrato usuario 
     async balance(req: Request, res: Response): Promise<void> {
-        const { id } = req.params;
-        
+        const { id } = req.params;        
         const balanceService = await this.accountService.balance(id)
         res.json(balanceService)
     }
 
+     //Método deleted Account
+    async delete(req: Request, res: Response): Promise<void> {
+        const {id} = req.params
+        const result = await this.accountService.delete(id)
+        res.status(200).json(result)
+
+    
+    }
 }

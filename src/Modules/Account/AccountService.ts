@@ -48,4 +48,11 @@ export default class AccountService implements IAccountService{
         const balance = await this.accountRepository.balance(id)
         return balance;
     }
+
+    //Metodo Delet Account
+    async delete (id: string): Promise < void | Error > {
+        const result = await this.accountRepository.delete(id)
+            return result
+
+    }
     }

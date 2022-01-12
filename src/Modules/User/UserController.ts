@@ -39,7 +39,7 @@ export default class UserController implements IUserController{
             res.json(user)
         }
 
-        //Método deleted
+        //Método deleted User
         async delete(req: Request, res: Response): Promise<void> {
             const {id} = req.params
             const result = await this.userService.delete(id)

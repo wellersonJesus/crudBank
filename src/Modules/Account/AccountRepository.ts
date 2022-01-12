@@ -72,9 +72,25 @@ implements IAccountRepository
             name: account.user.name,
             cpf: account.user.CPF,
             balance: account.balance
-        };
-    }
+    }}
 
-}
+    //Método Delete Account
+    async delete(id: string): Promise<void | Error> {
+            const result = await this.getRepo().delete(id)
+            let resp
+            
+            if (result){
+                resp = "Account deleted success!!"
+                return resp 
+            }else{
+                resp = "Account not deleted"
+                return resp
+            }
+        }
+    }
+    
+
+
+
 
 

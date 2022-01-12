@@ -20,7 +20,7 @@ export interface IAccountRepository{
     deposit(id:string,depositValue:number):Promise<object|Error>
     withdraw(id:string,withdrawValue:number):Promise<object|Error>
     balance(id:string):Promise<IBalanceResponse|Error>
-
+    delete(id:string):Promise<void|Error>
 }
 
 export interface IAccountService{
@@ -29,6 +29,7 @@ export interface IAccountService{
     deposit(id:string,depositValue:number):Promise<object|Error>
     withdraw(id:string,withdrawValue:number):Promise<object|Error>
     balance(id:string):Promise<IBalanceResponse | Error>
+    delete(id:string):Promise<void|Error>
 }
 
 export interface IAccountController{
@@ -37,4 +38,6 @@ export interface IAccountController{
     deposit(req:Request,res:Response):Promise<void>
     withdraw(req:Request,res:Response):Promise<void>
     balance(req:Request,res:Response):Promise<void>
-}ba5f1f0b-f871-44e6-b483-0149bd038f1a
+    delete(req:Request, res:Response):Promise<void>
+
+}
