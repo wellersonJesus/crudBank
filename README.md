@@ -8,5 +8,7 @@
     4. validações Accounts - [ok]()
     5. extrato usuario - [ok]()
     6. aviso de mensagem user deletado [ok]()
-    7. usuario já cadastrado - [10.01.22]()
-    8. tipo de conta CPF ou CNPJ [10.01.22]()
+    7. usuario já cadastrado - [ok]()
+    8. deletar account user - [ok]()
+    8. tipo de conta poupanca ou conjunta [12.01.22]()
+    
