@@ -5,9 +5,7 @@ import { ReplSet } from "typeorm";
    
    export default class userService implements IUserService {
 
-    constructor(
-        private userRepository: IUserRepository
-    ) {}    
+    constructor(private userRepository: IUserRepository) {}    
 
     async create({ id, name, CPF, email, }: IUser): Promise<object | Error> {
   
@@ -30,29 +28,29 @@ import { ReplSet } from "typeorm";
 
     }
 
-    async find(): Promise < object | Error > {
+    async find(): Promise<object | Error> {
 
-    const user = await this.userRepository.find()
+        const user = await this.userRepository.find()
 
         return user
+    };
 
-}
-
-    async findById(id: string): Promise < User | Error > {
-    const user = await this.userRepository.findById(id)
+    async findById(id: string): Promise<User | Error> {
+        const user = await this.userRepository.findById(id)
         return user
-}
+    }
 
-    async delete (id: string): Promise < void | Error > {
-    const result = await this.userRepository.delete(id)
+    async delete(id: string): Promise<void | Error> {
+        const result = await this.userRepository.delete(id)
         return result
-}
+    }
 
-    async update(id: string, name ?: string, CPF ?: string, email ?: string,): Promise < object | Error > {
+    async update(id: string, name?: string, CPF?: string, email?: string,): Promise<object | Error> {
 
-    const user = await this.userRepository.update(id, name, CPF, email)
+        const user = await this.userRepository.update(id, name, CPF, email)
 
         return user
 
-}
-}
+    }
+
+};
