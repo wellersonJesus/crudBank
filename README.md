@@ -1,14 +1,16 @@
 ***tURORIAL aCCOUNTS && uSERS***
 
-- tAREFAS
+### BancoUserAccount UseCase
 
-    1. tabela User - [ok]()
-    2. tabela Accounts - [ok]()
-    3. validações Users - [ok]()
-    4. validações Accounts - [ok]()
-    5. extrato usuario - [ok]()
-    6. aviso de mensagem user deletado [ok]()
-    7. usuario já cadastrado - [ok]()
-    8. deletar account user - [ok]()
-    8. tipo de conta poupanca ou conjunta [13.01.22]()
+### tabela User 
+- obter dados do usuario para cadastro no banco [ok]() 
+
+### tabela Accounts 
+- apos user cadastrado poderá prosseguir e realiza cadastro na conta [ok]()
+- validações Users confere se user já foi adicionado no banco [ok]()
+- extrato usuario pelo id da conta [ok]()
+- delete user e aviso de mensagem user deletado [ok]()
+- usuario já cadastrado - [ok]()
+- delete account user pelo id [ok]()
+- define o tipo de conta user [-]()
     
